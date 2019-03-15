@@ -136,7 +136,7 @@
     // Update Person
     public function update() {
 
-      // Update query
+      // Create query
       $query = "UPDATE ' . $this->table . ' 
         SET
           first_name = :first_name,
@@ -168,6 +168,32 @@
       $stmt->bindParam(':mobile_num', $this->mobile_num);
       $stmt->bindParam(':house_num', $this->house_num);
       $stmt->bindParam(':work_num', $this->work_num);
+
+      // Execute query and print error
+      if($stmt->execute()) {
+        return true;
+      } 
+
+      printf("Error: %s.\n", $stmt->error);
+
+      return false;
+    }
+
+      
+    // Delete Person
+    public function delete() {
+
+      // Create query
+      $query = "DELETE FROM ' . $this->table . ' WHERE id = :id";
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Clean id data
+      $this->id=htmlspecialchars(strip_tags($this->id));
+
+      // Bind id data
+      $stmt->bindParam(':id', $this->id);
 
       // Execute query and print error
       if($stmt->execute()) {
