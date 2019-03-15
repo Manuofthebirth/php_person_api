@@ -48,8 +48,8 @@
     }
 
 
-    // Get single person
-    public function read_single() {
+    // Get people by name
+    public function search() {
 
       // Create query
       $query = "SELECT 
@@ -64,14 +64,13 @@
       FROM
         ' . $this->table . '
       WHERE
-        id = ?
-      LIMIT 0,1";
+        first_name = ?";
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
 
-      // Bind ID from a person
-      $stmt->bindParam(1, $this->id);
+      // Bind name from a person
+      $stmt->bindParam(':first_name', $this->first_name);
 
       // Execute query
       $stmt->execute(); 
@@ -169,17 +168,18 @@
       $stmt->bindParam(':house_num', $this->house_num);
       $stmt->bindParam(':work_num', $this->work_num);
 
-      // Execute query and print error
+      // Execute query
       if($stmt->execute()) {
         return true;
       } 
 
-      printf("Error: %s.\n", $stmt->error);
+      // Print error
+      printf("Error: %s.\n", $stmt->error); 
 
       return false;
     }
-
       
+
     // Delete Person
     public function delete() {
 
@@ -195,11 +195,12 @@
       // Bind id data
       $stmt->bindParam(':id', $this->id);
 
-      // Execute query and print error
+      // Execute query
       if($stmt->execute()) {
         return true;
       } 
 
+      // Print error
       printf("Error: %s.\n", $stmt->error);
 
       return false;

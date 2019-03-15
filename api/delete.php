@@ -6,8 +6,8 @@
   header('Access-Control-Allow-Methods: DELETE');
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
-  include_once '../../config/Database.php';
-  include_once '../../models/Pesron.php';
+  include_once '../config/Database.php';
+  include_once '../models/Person.php';
 
   // Initialize DB and connect
   $database = new Database();
@@ -26,11 +26,11 @@
   if($person->delete()) {
     echo json_encode(
       array('message' => 'Person deleted!')
-    )
+    );
   } else {
     echo json_encode(
       array('message' => 'Unable to delete Person!')
-    )
+    );
   }
 
 ?>

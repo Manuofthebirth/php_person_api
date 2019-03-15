@@ -6,8 +6,8 @@
   header('Access-Control-Allow-Methods: PUT');
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
-  include_once '../../config/Database.php';
-  include_once '../../models/Pesron.php';
+  include_once '../config/Database.php';
+  include_once '../models/Person.php';
 
   // Initialize DB and connect
   $database = new Database();
@@ -34,11 +34,11 @@
   if($person->update()) {
     echo json_encode(
       array('message' => 'New Person updated!')
-    )
+    );
   } else {
     echo json_encode(
       array('message' => 'Unable to update new Person!')
-    )
+    );
   }
 
 ?>

@@ -4,8 +4,8 @@
   header('Access-Control-Allow-Origin: *');
   header('Content-Type: application/json');
 
-  include_once '../../config/Database.php';
-  include_once '../../models/Pesron.php';
+  include_once '../config/Database.php';
+  include_once '../models/Person.php';
 
   // Initialize DB and connect
   $database = new Database();
@@ -21,15 +21,15 @@
   $person->read_single();
 
   // Create array
-    $person_arr = array(
-      'id' => $person->id,
-      'first_name' => $person->first_name,
-      'last_name' => $person->last_name,
-      'birth_date' => $person->birth_date,
-      'mobile_num' => $person->mobile_num,
-      'house_num' => $person->house_num,
-      'work_num' => $person->work_num
-    );
+  $person_arr = array(
+    'id' => $person->id,
+    'first_name' => $person->first_name,
+    'last_name' => $person->last_name,
+    'birth_date' => $person->birth_date,
+    'mobile_num' => $person->mobile_num,
+    'house_num' => $person->house_num,
+    'work_num' => $person->work_num
+  );
 
   // Encode to JSON
   print_r(json_encode($person_arr)); // Print a readable info about the variables
