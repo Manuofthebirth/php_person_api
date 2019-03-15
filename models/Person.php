@@ -24,14 +24,14 @@
 
 			// Create query
 			$query = "SELECT 
-					id,
-					first_name,
-					last_name,
-					birth_date,
-					mobile_num,
-					house_num,
-					work_num,
-					created_at
+				id,
+				first_name,
+				last_name,
+				birth_date,
+				mobile_num,
+				house_num,
+				work_num,
+				created_at
 			FROM
 				' . $this->table . '
 			ORDER BY
@@ -51,14 +51,14 @@
 
 			// Create query
 			$query = "SELECT 
-					id,
-					first_name,
-					last_name,
-					birth_date,
-					mobile_num,
-					house_num,
-					work_num,
-					created_at
+				id,
+				first_name,
+				last_name,
+				birth_date,
+				mobile_num,
+				house_num,
+				work_num,
+				created_at
 			FROM
 				' . $this->table . '
 			WHERE
@@ -85,6 +85,48 @@
 			$this->work_num = $row['work_num'];
 
 			return $stmt;
+		}
+
+		// Create Person
+		public function create() {
+
+			// Create query
+			$query = "INSERT INTO ' . $this->table . ' 
+				SET
+					first_name = :first_name,
+					last_name = :last_name,
+					birth_date = :birth_date,
+					mobile_num = :mobile_num,
+					house_num = :house_num,
+					work_num = :work_num";
+
+			// Prepare statement
+			$stmt = $this->conn->prepare($query);
+
+			// Clean data
+		$this->first_name=htmlspecialchars(strip_tags($this->first_name));
+		$this->last_name=htmlspecialchars(strip_tags($this->last_name));
+		$this->birth_date=htmlspecialchars(strip_tags($this->birth_date));
+		$this->description=htmlspecialchars(strip_tags($this->description));
+		$this->house_num=htmlspecialchars(strip_tags($this->house_num));
+		$this->work_num=htmlspecialchars(strip_tags($this->work_num));
+
+		// Bind data
+			$stmt->bindParam(':first_name', $this->first_name);
+			$stmt->bindParam(':last_name', $this->last_name);
+			$stmt->bindParam(':birth_date', $this->birth_date);
+			$stmt->bindParam(':mobile_num', $this->mobile_num);
+			$stmt->bindParam(':house_num', $this->house_num);
+			$stmt->bindParam(':work_num', $this->work_num);
+
+			// Execute query and print error
+			if($stmt->execute()) {
+				return true;
+			} 
+
+			printf("Error: %s.\n", $stmt->error);
+
+			return false;
 		}
 	}
 ?>

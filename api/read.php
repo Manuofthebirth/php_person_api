@@ -7,14 +7,14 @@
   include_once '../../config/Database.php';
   include_once '../../models/Pesron.php';
 
-   // Instantiate DB and connect
+  // Initialize DB and connect
   $database = new Database();
   $db = $database->connect();
 
-   // Initialize person object
+  // Initialize person object
   $person = new Person($db);
 
-   // Person query
+  // Person query
   $result = $person->read();
 
   // Get row count
