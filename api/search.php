@@ -15,7 +15,7 @@
   $person = new Person($db);
 
   // Get keywords
-  $keywords = isset($_GET['first_name']) ? $_GET['first_name'] : die(); // GET if a person is set and put on first_name; else = cuts everything and don't display anything
+  $keywords = isset($_GET['text']) ? $_GET['text'] : die(); // GET if a person info is set; else = cuts everything and don't display anything
 
   // Person query
   $result = $person->search($keywords);
