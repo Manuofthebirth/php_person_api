@@ -14,8 +14,11 @@
   // Initialize person object
   $person = new Person($db);
 
+  // Get keywords
+  $keywords = isset($_GET['text']) ? $_GET['text'] : die(); // GET if a person info is set; else = cuts everything and don't display anything
+
   // Person query
-  $result = $person->read();
+  $result = $person->search($keywords);
 
   // Get row count
   $num = $result->rowCount();
@@ -25,13 +28,14 @@
 
     // Person array
     $persons_arr = array();
-    $persons_arr['data'] = array();
+    $persons_arr['results'] = array();
 
     while($row = $result->fetch(PDO::FETCH_ASSOC)) {
       extract($row); // extract data from each row
 
-       $person_item = array(
-        'id' => $id,
+      // Create array
+      $person_item = array(
+        'id' => $person->id,
         'first_name' => $first_name,
         'last_name' => $last_name,
         'birth_date' => $birth_date,
@@ -41,16 +45,16 @@
       );
 
       // Push to "data"
-      array_push($persons_arr['data'], $person_item);
+      array_push($persons_arr['results'], $person_item);
     }
 
     // Encode to JSON and output
     echo json_encode($persons_arr);
-   } else {
-
+  } else {
+ 
     // No Person
     echo json_encode(
-      array('message' => 'No person found!')
+      array("message" => "No person found!")
     );
   }
 ?>

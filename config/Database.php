@@ -3,13 +3,12 @@
     // DB params
     private $host = 'localhost';
     private $db_name = 'contactlist'; 
-    private $username = 'root'; // insert your username here (MySQL default: 'root')
-    private $password = 'mysql'; // insert your password here (MySQL default: '')
+    private $username = 'root';
+    private $password = 'mysql';
     private $conn;
 
     // DB Connect
     public function connect() {
-      
       $this->conn = null;
 
       try {
