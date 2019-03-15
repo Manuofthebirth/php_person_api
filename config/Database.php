@@ -2,9 +2,9 @@
 	class Database {
 		// DB params
 		private $host = 'localhost';
-		private $db_name = 'contactlist';
-		private $username = 'root';
-		private $password = 'mysql';
+		private $db_name = 'contactlist'; 
+		private $username = 'root'; // insert your username here (MySQL default: 'root')
+		private $password = 'mysql'; // insert your password here (MySQL default: '')
 		private $conn;
 
 		// DB Connect

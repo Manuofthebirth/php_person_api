@@ -37,7 +37,7 @@
         'birth_date' => $birth_date,
         'mobile_num' => $mobile_num,
         'house_num' => $house_num,
-        'work_num' => $work_num,
+        'work_num' => $work_num
       );
 
       // Push to "data"
