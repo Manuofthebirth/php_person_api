@@ -48,8 +48,8 @@
     }
 
 
-    // Get people by name
-    public function search() {
+    // Search people
+    public function search($keywords) {
 
       // Create query
       $query = "SELECT 
@@ -64,13 +64,52 @@
       FROM
         ' . $this->table . '
       WHERE
-        first_name = ?";
+        first_name LIKE ? OR last_name LIKE ?
+      ORDER BY
+        created_at DESC";
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
 
-      // Bind name from a person
-      $stmt->bindParam(':first_name', $this->first_name);
+      // Clean keywords data
+      $keywords=htmlspecialchars(strip_tags($keywords));
+      $keywords = "%{$keywords}%";
+
+      // Bind keywords data
+      $stmt->bindParam(1, $keywords);
+      $stmt->bindParam(2, $keywords);
+
+      // Execute query
+      $stmt->execute(); 
+
+      return $stmt;
+    }
+
+
+    // Get single Person
+    public function read_single() {
+
+      // Create query
+      $query = "SELECT 
+        id,
+        first_name,
+        last_name,
+        birth_date,
+        mobile_num,
+        house_num,
+        work_num,
+        created_at
+      FROM
+        ' . $this->table . '
+      WHERE
+        id = ?
+      LIMIT 0,1";
+
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
+
+      // Bind ID from a person
+      $stmt->bindParam(1, $this->id);
 
       // Execute query
       $stmt->execute(); 
