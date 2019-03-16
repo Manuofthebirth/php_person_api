@@ -33,11 +33,11 @@
   // Update a person
   if($person->update()) {
     echo json_encode(
-      array('message' => 'New Person updated!')
+      array('message' => 'Person updated!')
     );
   } else {
     echo json_encode(
-      array('message' => 'Unable to update new Person!')
+      array('message' => 'Unable to update Person!')
     );
   }
 

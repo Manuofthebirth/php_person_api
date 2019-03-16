@@ -24,7 +24,7 @@
     public function read() {
 
       // Create query
-      $query = "SELECT 
+      $query = 'SELECT 
         id,
         first_name,
         last_name,
@@ -36,7 +36,7 @@
       FROM
         ' . $this->table . '
       ORDER BY
-        created_at DESC";
+        created_at DESC';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -52,7 +52,7 @@
     public function search($keywords) {
 
       // Create query
-      $query = "SELECT 
+      $query = 'SELECT 
         id,
         first_name,
         last_name,
@@ -66,7 +66,7 @@
       WHERE
         first_name LIKE ? OR last_name LIKE ?
       ORDER BY
-        created_at DESC";
+        created_at DESC';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -90,7 +90,7 @@
     public function read_single() {
 
       // Create query
-      $query = "SELECT 
+      $query = 'SELECT 
         id,
         first_name,
         last_name,
@@ -103,7 +103,7 @@
         ' . $this->table . '
       WHERE
         id = ?
-      LIMIT 0,1";
+      LIMIT 0,1';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -132,14 +132,14 @@
     public function create() {
 
       // Create query
-      $query = "INSERT INTO ' . $this->table . ' 
+      $query = 'INSERT INTO ' . $this->table . ' 
         SET
           first_name = :first_name,
           last_name = :last_name,
           birth_date = :birth_date,
           mobile_num = :mobile_num,
           house_num = :house_num,
-          work_num = :work_num";
+          work_num = :work_num';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -148,7 +148,7 @@
       $this->first_name=htmlspecialchars(strip_tags($this->first_name));
       $this->last_name=htmlspecialchars(strip_tags($this->last_name));
       $this->birth_date=htmlspecialchars(strip_tags($this->birth_date));
-      $this->description=htmlspecialchars(strip_tags($this->description));
+      $this->mobile_num=htmlspecialchars(strip_tags($this->mobile_num));
       $this->house_num=htmlspecialchars(strip_tags($this->house_num));
       $this->work_num=htmlspecialchars(strip_tags($this->work_num));
 
@@ -175,7 +175,7 @@
     public function update() {
 
       // Create query
-      $query = "UPDATE ' . $this->table . ' 
+      $query = 'UPDATE ' . $this->table . ' 
         SET
           first_name = :first_name,
           last_name = :last_name,
@@ -184,7 +184,7 @@
           house_num = :house_num,
           work_num = :work_num
         WHERE
-          id = :id";
+          id = :id';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
@@ -194,7 +194,7 @@
       $this->first_name=htmlspecialchars(strip_tags($this->first_name));
       $this->last_name=htmlspecialchars(strip_tags($this->last_name));
       $this->birth_date=htmlspecialchars(strip_tags($this->birth_date));
-      $this->description=htmlspecialchars(strip_tags($this->description));
+      $this->mobile_num=htmlspecialchars(strip_tags($this->mobile_num));
       $this->house_num=htmlspecialchars(strip_tags($this->house_num));
       $this->work_num=htmlspecialchars(strip_tags($this->work_num));
 
@@ -223,7 +223,7 @@
     public function delete() {
 
       // Create query
-      $query = "DELETE FROM ' . $this->table . ' WHERE id = :id";
+      $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
 
       // Prepare statement
       $stmt = $this->conn->prepare($query);
