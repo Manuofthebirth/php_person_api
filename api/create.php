@@ -22,7 +22,7 @@
   $person->first_name = $data->first_name;
   $person->last_name = $data->last_name;
   $person->birth_date = $data->birth_date;
-  $person->description = $data->description;
+  $person->mobile_num = $data->mobile_num;
   $person->house_num = $data->house_num;
   $person->work_num = $data->work_num;
 

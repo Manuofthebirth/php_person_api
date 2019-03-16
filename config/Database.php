@@ -4,7 +4,7 @@
     private $host = 'localhost';
     private $db_name = 'contactlist'; 
     private $username = 'root';
-    private $password = 'mysql';
+    private $password = '';
     private $conn;
 
     // DB Connect
