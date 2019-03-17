@@ -48,3 +48,31 @@ POST   /api/create.php
 PUT    /api/update.php
 DELETE /api/delete.php
 ```
+
+Update Person
+
+Na aba Body, clique em raw e mude os parâmetros
+> In 'Body' tab, click on 'raw' and change the params
+```sh
+{
+    "id": "4",
+    "first_name": "Leia",
+    "last_name": "Solo", 
+    "birth_date": "1958-05-19",
+    "mobile_num": "(21) 7601-7646",
+    "house_num": "(21) 2266-0168",
+    "work_num": "(21) 3251-2247"
+}
+
+Will overwrite "last_name": "Organa"
+```
+
+Delete Person
+
+Na aba Body, clique em raw e insira a id
+> In 'Body' tab, click on 'raw' and insert the id
+```sh
+{
+    "id": "7"
+}
+```
